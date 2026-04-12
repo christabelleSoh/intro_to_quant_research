@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The SG Sample: PW Data</title>
+  <title>TJC PW: Introduction to Sampling and Survey Design</title>
   
   <!-- Load Tailwind CSS for styling -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -135,7 +135,7 @@
     const Section1 = () => {
       const [draggables, setDraggables] = useState([
         { id: 1, text: 'All JC students in SG', correct: 'pop', status: 'idle' },
-        { id: 2, text: '50 students from your CCA', correct: 'samp', status: 'idle' },
+        { id: 2, text: '50 students from TJC', correct: 'samp', status: 'idle' },
         { id: 3, text: 'All the Laksa in the pot', correct: 'pop', status: 'idle' },
         { id: 4, text: 'One spoonful of Laksa', correct: 'samp', status: 'idle' },
       ]);
@@ -174,8 +174,8 @@
       return (
         <div className="space-y-8 animate-fadeIn">
           <div>
-            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 1: The Big Picture</h2>
-            <p className="text-slate-600 text-lg">Establish the fundamental vocabulary and the "why" of sampling.</p>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 1: The Big Ideas in Sampling</h2>
+            <p className="text-slate-600 text-lg">This section establishes the fundamental vocabulary and the "why" of sampling.</p>
           </div>
 
           <div className="bg-slate-900 rounded-xl aspect-video flex flex-col items-center justify-center text-white relative overflow-hidden shadow-lg border-4 border-slate-800">
@@ -191,8 +191,8 @@
           </div>
 
           <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-            <h3 className="font-bold text-xl text-blue-900 mb-4">Interactive: Classify the Scenarios</h3>
-            <p className="mb-4 text-slate-700">Drag the green items into the correct boxes below.</p>
+            <h3 className="font-bold text-xl text-blue-900 mb-4">Test your understanding</h3>
+            <p className="mb-4 text-slate-700">Check your understanding of the terms 'population' and 'sample' by dragging the green items into the correct boxes below.</p>
             
             <div className="h-6 mb-2">
               {feedbackMsg && (
