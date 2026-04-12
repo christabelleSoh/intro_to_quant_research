@@ -452,7 +452,7 @@
             <h3 className="font-bold text-xl mb-4 text-slate-800 text-center">Mini-Exercise: Carry out simple random sampling</h3>
             
             <div className="bg-blue-50 border border-blue-200 p-4 sm:p-6 rounded-lg mb-6 text-slate-700 shadow-inner">
-              <p className="mb-3 font-medium"><strong>Step 1:</strong> Imagine your project is on improving the project work (PW) experience for TJC JC1 students. As part of your research on prevalence, you want to find out the proportions of TJC students who enjoy or do not enjoy PW. You have somehow convinced the Principal to release the namelist of all TJC JC1 students (your population of interest) to you:</p>
+              <p className="mb-3 font-medium"><strong>Step 1:</strong> Imagine your project is on improving the project work (PW) experience for TJC JC1 students. As part of your research on prevalence, you want to find out the proportions of TJC JC1 students who enjoy or do not enjoy PW. You have somehow convinced the Principal to release the namelist of all TJC JC1 students (your population of interest) to you:</p>
               <a href="https://docs.google.com/spreadsheets/d/1X_IWzv8h-rsxat0qTyfprBt4nI2ui9HEz1nYNgizkns/edit?usp=sharing" target="_blank" className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
                 <i className="fa-solid fa-table"></i> Open Population Database
               </a>
@@ -533,7 +533,7 @@
                         {trueRevealed && (
                           <div className="bg-slate-800 text-white p-6 rounded-xl shadow-inner animate-fadeIn mx-auto max-w-lg">
                             <p className="text-lg">In the entire population of 500 students, exactly <strong className="text-emerald-400 text-3xl block my-2">{truePopPercentage}%</strong> like Project Work.</p>
-                            <p className="text-slate-300 mt-4 text-sm leading-relaxed">Did your sample of 10 cluster perfectly around this parameter, or was it off? This is why having a large enough sample size is critical even when picking randomly! We will look at sample sizes in the next section!</p>
+                            <p className="text-slate-300 mt-4 text-sm leading-relaxed">Did your sample of 10 cluster perfectly around this parameter, or was it off? This is why having a large enough sample size is critical even when picking randomly! We will look at sample sizes in a later section!</p>
                           </div>
                         )}
                       </div>
@@ -558,38 +558,38 @@
         <div className="space-y-8 animate-fadeIn">
           <div>
             <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 4: The Reality Check</h2>
-            <p className="text-slate-600 text-lg">Convenience Sampling in PW</p>
+            <p className="text-slate-600 text-lg">Convenience Sampling in Project Work</p>
           </div>
 
           <div className="bg-white shadow-lg border border-slate-200 rounded-xl overflow-hidden">
             <div className="bg-slate-800 text-white p-6">
-              <h3 className="font-bold text-xl mb-2">Scenario: The Tight Deadline</h3>
-              <p>You have a project due in two weeks on student stress levels. You need 50 responses. What's your sampling plan?</p>
+              <h3 className="font-bold text-xl mb-2">Scenario: The Reality of Project Work</h3>
+              <p>You are working on a project to improve the public transport experience of teachers who have to travel long distances to reach their schools. You would like to survey 30 of such teachers to find out what proportion would be receptive to your proposed solution of a meditation app. What sampling method would you adopt?</p>
             </div>
             
             <div className="p-6 grid md:grid-cols-2 gap-4">
               <button onClick={() => setChoice('A')} className={`p-4 rounded-xl border-2 text-left transition-all ${choice === 'A' ? 'border-red-500 bg-red-50' : 'border-slate-200 hover:border-slate-400'}`}>
                 <strong className="block mb-2 text-slate-800">Option A: The Idealist</strong>
-                <span className="text-slate-600 text-sm">Attempt an SRS by asking the Principal for a nominal roll of all 1,500 students.</span>
+                <span className="text-slate-600 text-sm">Attempt simple random sampling. Write in to the Ministry of Education (MOE) to request a list of names of all teachers in Singapore who live more than 10km from their schools and their contact details so that you can draw a simple random sample and survey them.</span>
               </button>
               
               <button onClick={() => setChoice('B')} className={`p-4 rounded-xl border-2 text-left transition-all ${choice === 'B' ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200 hover:border-slate-400'}`}>
                 <strong className="block mb-2 text-slate-800">Option B: The Realist</strong>
-                <span className="text-slate-600 text-sm">Post the Google Form link on your class WhatsApp/Telegram group and ask friends to fill it out.</span>
+                <span className="text-slate-600 text-sm">Post your survey link on all the channels you have access to (e.g., Whatsapp) and ask for help from your teachers, friends, and family to disseminate it to teachers whom they may know to live more than 10km from school.</span>
               </button>
             </div>
 
             {choice === 'A' && (
               <div className="p-4 mx-6 mb-6 bg-red-100 text-red-900 rounded-lg flex gap-3 animate-fadeIn">
                 <i className="fa-regular fa-circle-xmark mt-1"></i>
-                <p><strong>Access Denied!</strong> Principals usually don't give out student lists due to PDPA privacy laws. Plus, tracking down the 50 random students you selected across the whole school would take weeks. Try again!</p>
+                <p><strong>Access Denied!</strong> MOE will not share such a list with you due to PDPA privacy laws. Additionally, for some populations, there may not even be a sampling frame (i.e., the masterlist of names) to begin with. Try again!</p>
               </div>
             )}
 
             {choice === 'B' && (
               <div className="p-4 mx-6 mb-6 bg-emerald-100 text-emerald-900 rounded-lg flex gap-3 animate-fadeIn">
                 <i className="fa-regular fa-circle-check mt-1"></i>
-                <div><p><strong>Success... sort of!</strong> This is called <strong>Convenience Sampling</strong>. It is exactly what 99% of students do for PW.</p></div>
+                <div><p><strong>Success... sort of!</strong> This is called <strong>Convenience Sampling</strong>. While it may result in a biased sample, it is usually the only feasible sampling method available to students doing PW.</p></div>
               </div>
             )}
           </div>
@@ -600,21 +600,21 @@
                 <tr><th className="p-4 text-left border-b">Feature</th><th className="p-4 text-left border-b">Simple Random (SRS)</th><th className="p-4 text-left border-b">Convenience Sampling</th></tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
-                <tr><td className="p-4 font-bold text-slate-800">Effort Level</td><td className="p-4 text-red-600 font-medium">High (Needs complete lists)</td><td className="p-4 text-green-600 font-medium">Low (Quick and easy)</td></tr>
-                <tr><td className="p-4 font-bold text-slate-800">Bias Level</td><td className="p-4 text-green-600 font-medium">Low (Representative)</td><td className="p-4 text-red-600 font-medium">High (Only represents your circle)</td></tr>
-                <tr><td className="p-4 font-bold text-slate-800">Best For</td><td className="p-4 text-slate-600">Massive academic studies, Govt Polling</td><td className="p-4 text-slate-600">School projects, preliminary research</td></tr>
+                <tr><td className="p-4 font-bold text-slate-800">Effort Level</td><td className="p-4 text-red-600 font-medium">High (Needs sampling frame)</td><td className="p-4 text-green-600 font-medium">Low (Quick and easy)</td></tr>
+                <tr><td className="p-4 font-bold text-slate-800">Bias Level</td><td className="p-4 text-green-600 font-medium">Low (Representative)</td><td className="p-4 text-red-600 font-medium">Likely high (Likely over-represents your circle)</td></tr>
+                <tr><td className="p-4 font-bold text-slate-800">Best For</td><td className="p-4 text-slate-600">Studies that may inform high-stakes decisions such as government policy or massive research studies as the implications of getting biased results from a biased sample could be significant</td><td className="p-4 text-slate-600">School projects, preliminary research</td></tr>
               </tbody>
             </table>
           </div>
 
           <div className="bg-blue-50 border border-blue-100 p-6 rounded-xl">
             <h3 className="font-bold text-lg mb-2">Final Reflection</h3>
-            <p className="text-slate-700 mb-4">Since you will likely use convenience sampling for your project, your sample will be biased. Write one sentence you can include in your report's "Limitations" section to acknowledge this.</p>
+            <p className="text-slate-700 mb-4">Since you will likely use convenience sampling for your project, your sample will likely be biased. In the real world, research is never perfectly executed and it is the norm for researchers to acknowledge the limitations of their research. Try writing one or two sentences that you <b>might</b> include in your Project Summary to acknowledge the implications of your convenience sample.</p>
             <textarea className="w-full p-3 border border-slate-300 rounded-lg mb-3 focus:ring-2 focus:ring-blue-500 outline-none" rows="3" placeholder="Type your reflection here..." value={reflection} onChange={(e) => setReflection(e.target.value)}></textarea>
             <button onClick={() => setSubmitted(true)} className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700">Submit</button>
             {submitted && (
               <div className="mt-4 p-4 bg-white border border-green-200 rounded-lg text-green-800 animate-fadeIn">
-                <strong>Model Answer:</strong> "A limitation of our study is the use of convenience sampling via social media, which may result in a sample that overrepresents students from similar educational backgrounds to the researchers and may not perfectly reflect the broader youth population."
+                <strong>Possible acknowledgement sentence:</strong> "A limitation of our study is the use of convenience sampling, which may result in a sample that over-represents respondents from similar educational backgrounds to us and may not perfectly reflect the broader target group."
               </div>
             )}
           </div>
