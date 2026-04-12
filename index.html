@@ -127,7 +127,7 @@
     const Section1 = () => {
       const [draggables, setDraggables] = useState([
         { id: 1, text: 'All JC students in SG', correct: 'pop', status: 'idle' },
-        { id: 2, text: '50 students from your JC', correct: 'samp', status: 'idle' },
+        { id: 2, text: '50 students from your CCA', correct: 'samp', status: 'idle' },
         { id: 3, text: 'All the Laksa in the pot', correct: 'pop', status: 'idle' },
         { id: 4, text: 'One spoonful of Laksa', correct: 'samp', status: 'idle' },
       ]);
@@ -171,11 +171,15 @@
           </div>
 
           <div className="bg-slate-900 rounded-xl aspect-video flex flex-col items-center justify-center text-white relative overflow-hidden shadow-lg border-4 border-slate-800">
-            {/* The Video Element */}
-            <video className="w-full h-full object-cover" controls preload="auto">
-              <source src="laksa.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            {/* YouTube Embed Placeholder */}
+            <iframe 
+              className="w-full h-full object-cover" 
+              src="https://youtu.be/KJPicqtY88o" 
+              title="YouTube video player" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowFullScreen>
+            </iframe>
           </div>
 
           <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
