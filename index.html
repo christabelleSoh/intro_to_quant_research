@@ -644,8 +644,8 @@
           </div>
 
           <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
-            <h3 className="font-bold text-xl mb-2">Activity: The Extremes</h3>
-            <p className="text-slate-600 mb-6">Move the slider below to see how your sample size affects the probability of bias. Notice what happens when you sample just a few people versus the entire population.</p>
+            <h3 className="font-bold text-xl mb-2">Activity: Sample Size and Probability of Bias</h3>
+            <p className="text-slate-600 mb-6">Even if a sample is randomly selected, it is still possible for it to be biased. The probability of a biased sample is also dependent on the sample size. Move the slider below from one extreme to the other to see how the sample size affects the probability of bias.</p>
             
             <div className="mb-8 p-4 sm:p-6 border-2 border-blue-100 bg-blue-50/50 rounded-xl">
               <label className="flex justify-between items-center text-sm font-bold text-blue-800 mb-4 uppercase tracking-wide">
@@ -681,12 +681,12 @@
               ) : sliderVal < 30 ? (
                 <p className="text-lg font-medium text-slate-700">
                   <span className="text-red-500 font-bold block mb-2 text-2xl">High Risk of Bias</span>
-                  The smaller the sample size, the higher the chance of collecting a biased sample. If you only collect data from two people, there is a reasonable chance that both have extreme attitudes!
+                  The smaller the sample size, the higher the chance of collecting a biased sample. For example, if you only collect data from two people, there is a reasonable chance that both have extreme attitudes!
                 </p>
               ) : (
                 <p className="text-lg font-medium text-slate-800">
                   <span className="text-green-600 font-bold block mb-2 text-2xl">Lower Risk of Bias</span>
-                  The larger the sample size, the lower the chance of collecting a biased sample. If you collect data from a hundred people, it is very unlikely that all hundred have extreme attitudes.
+                  The larger the sample size, the lower the chance of collecting a biased sample. For example, if you collect data from a hundred people, it is very unlikely that all hundred have extreme attitudes.
                 </p>
               )}
             </div>
@@ -695,7 +695,7 @@
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-blue-50 border border-blue-200 p-6 rounded-xl">
               <h3 className="font-bold text-lg mb-2">Real-World Industry Standard</h3>
-              <p className="text-sm text-slate-700 mb-4">Professional researchers aim for a <strong>95% confidence level</strong> and a <strong>5% margin of error</strong>.</p>
+              <p className="text-sm text-slate-700 mb-4">In the real world, professional researchers aim for a sample size that provides <strong>95% confidence level</strong> and a <strong>5% margin of error</strong>. What this means is that results from the sample have a 95% probability of being within 5% of the true population results. The required sample sizes to achieve this will vary with the population size. Try keying in various population sizes below to see what the required sample sizes are.</p>
               <div className="bg-white p-4 rounded-lg shadow-inner mb-4">
                 <label className="block text-sm font-bold text-slate-600 mb-1">Enter Target Population Size:</label>
                 <input type="number" value={popSize} onChange={(e) => setPopSize(parseInt(e.target.value) || '')} className="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none text-lg" />
@@ -708,9 +708,9 @@
 
             <div className="bg-slate-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
               <h3 className="font-bold text-2xl mb-4 text-emerald-400">The PW Reality (N=30)</h3>
-              <p className="mb-4 text-slate-300">For school project work, getting 300+ responses is often impossible. Instead, a recognized minimum is <strong>30 respondents</strong>.</p>
+              <p className="mb-4 text-slate-300">For school project work, getting enough responses for 95% confidence level and 5% margin of error is often impossible. Instead, a recognized minimum is <strong>30 respondents</strong>.</p>
               <p className="text-sm text-slate-400 bg-slate-900 p-4 rounded-lg border border-slate-700">
-                Why 30? It allows a mathematical concept called the <strong>Central Limit Theorem</strong> to hold, which basically means your data distribution starts behaving normally enough to do statistical analysis.
+                Why 30? It allows a mathematical concept called the <strong>Central Limit Theorem</strong> to hold, which basically means your sample is large enough for you to do statistical analysis such as hypothesis testing. Both Central Limit Theorem and Hypothesis Testing are concepts you will eventually learn in H1 and H2 Mathematics. For PW, it is sufficient to know that you should try to hit a sample size of 30.
               </p>
             </div>
           </div>
