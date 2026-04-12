@@ -787,7 +787,7 @@
         { q: "What is your CCA?", isDepends: true, reason: "It is purposeful if you intend to study whether students from different CCAs have different attitudes towards JC canteen food. But it is pointless otherwise." },
         { q: "What is your exact household income in $?", useful: false, reason: "Pointless & Invasive! Ask broad income brackets only if highly relevant." },
         { q: "Are you currently studying in a JC?", useful: true, reason: "Purposeful! This is a Screening question. If they say no, kick them out." },
-        { q: "What is your NRIC?", useful: false, reason: "Personal Data Protection Act (PDPA) violation! Never ask for NRIC or any other information that will enable a respondent to be identified for a school project." }
+        { q: "What is your NRIC?", useful: false, reason: "This is a Personal Data Protection Act (PDPA) violation! Never ask for NRIC or any other information that will enable a respondent to be identified for a school project." }
       ];
 
       const handleSwipe = (isUseful) => {
@@ -882,7 +882,7 @@
 
       return (
         <div className="space-y-8 animate-fadeIn">
-          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 8: The Interrogation Room</h2><p className="text-slate-600 text-lg">Crafting the Main Questions</p></div>
+          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 8: The Main Survey Questions</h2><p className="text-slate-600 text-lg">Now we move on to crafting the main survey questions.</p></div>
           <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-yellow-900"><strong>Rule of Thumb:</strong> Use closed-ended questions (Multiple Choice/Likert Scales) for 90% of your survey. Open-ended paragraphs are a nightmare to code and analyze manually.</div>
           <div className="bg-slate-900 text-slate-300 p-6 rounded-xl shadow-lg">
             <h3 className="font-bold text-xl text-white mb-6">Common Survey Mistakes</h3>
