@@ -816,11 +816,11 @@
 
       return (
         <div className="space-y-8 animate-fadeIn">
-          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 7: The "Who Are You?"</h2><p className="text-slate-600 text-lg">Demographics and Data Privacy (PDPA)</p></div>
+          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 7: The Demographic Section of Your Survey"</h2><p className="text-slate-600 text-lg">The demographic section of the survey captures background information of your survey respondents. Questions should be included only if they serve one of the following purposes.</p></div>
           <div className="grid md:grid-cols-3 gap-4 mb-8">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200"><strong className="block text-blue-900 mb-1">1. To Screen</strong><span className="text-sm text-slate-700">Kick out people who aren't in your target population.</span></div>
-            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200"><strong className="block text-purple-900 mb-1">2. Balance Tests</strong><span className="text-sm text-slate-700">Check if your sample matches real-world demographics.</span></div>
-            <div className="bg-orange-50 p-4 rounded-lg border border-orange-200"><strong className="block text-orange-900 mb-1">3. Sub-Populations</strong><span className="text-sm text-slate-700">See if different groups answer differently.</span></div>
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200"><strong className="block text-blue-900 mb-1">1. To Screen</strong><span className="text-sm text-slate-700">This refers to removing people who aren't your target survey respondents. For example, if you only want to survey students, you can have a question on whether a respondent is a student and direct him/her to the end of the survey if his/her answer is "No".</span></div>
+            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200"><strong className="block text-purple-900 mb-1">2. Balance Tests</strong><span className="text-sm text-slate-700">This refers to checking if your sample demographics matches the population demographics (if they are known). For example, if you are surveying JC1 students and know that in 2025, 47% of JC1 students are male and 53% are female (click on the link in the 'Exploring Singstat' box below for a video on how to access the Singstat website to obtain such figures), then you could include a question on gender so that you can observe whether your sample has a similar gender breakdown. A similar gender breakdown would give you more confidence that your sample may be representative.</span></div>
+            <div className="bg-orange-50 p-4 rounded-lg border border-orange-200"><strong className="block text-orange-900 mb-1">3. Sub-Populations</strong><span className="text-sm text-slate-700">To see if different sub-populations answer differently. For example, you may include a question on gender if it is part of the project to find out whether males and females had different opinions. But note that if you wish to make such a comparison, then <b>each sub-population</b> would require a sample of <b>30</b>.</span></div>
           </div>
           
           <div className="bg-slate-800 p-8 rounded-xl shadow-xl flex flex-col items-center text-center relative overflow-hidden">
@@ -867,12 +867,8 @@
           
           <div className="border-2 border-red-200 bg-red-50 p-6 rounded-xl relative">
             <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">MINI CHALLENGE</div>
-            <h3 className="font-bold text-red-900 text-lg mb-2">The SingStat WebQuest</h3>
-            <p className="text-red-800 mb-4">Your survey sample returned <strong>80% Females and 20% Males</strong>. Is this balanced? Go to <a href="https://www.singstat.gov.sg" target="_blank" className="underline font-bold text-red-600">singstat.gov.sg</a> (or guess!) to find the true gender split of Singapore's youth population.</p>
-            <div className="flex items-center gap-3">
-              <input type="number" placeholder="True Male %" value={singStatAns} onChange={(e) => setSingStatAns(e.target.value)} className="border p-2 rounded w-32 focus:ring-2 focus:ring-red-400 outline-none" />
-            </div>
-            {singStatAns && <p className="mt-3 text-sm font-medium text-red-700">*Hint: In reality, it is roughly 51% Male / 49% Female. Your sample of 80% Female is heavily biased and fails the balance test!</p>}
+            <h3 className="font-bold text-red-900 text-lg mb-2">Exploring Singstat</h3>
+            <p className="text-red-800 mb-4">To conduct balance tests, you need to know what information about your survey population is available. Imagine you need to survey your target population. Explore the Singstat website at <a href="https://www.singstat.gov.sg" target="_blank" className="underline font-bold text-red-600">singstat.gov.sg</a>to try to find out the size of your target population and also what demographic information about them is available. Click <a href="https://www.loom.com/share/021b3469153f45768ccad252b5894adb" target="_blank" className="underline font-bold text-red-600">here</a> for a video on navigating the Singstat website if you need a little help!</p>
           </div>
         </div>
       );
