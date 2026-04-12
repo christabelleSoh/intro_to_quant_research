@@ -882,10 +882,10 @@
 
       return (
         <div className="space-y-8 animate-fadeIn">
-          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 8: The Main Survey Questions</h2><p className="text-slate-600 text-lg">Now we move on to crafting the main survey questions.</p></div>
-          <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-yellow-900"><strong>Rule of Thumb:</strong> Use closed-ended questions (Multiple Choice/Likert Scales) for 90% of your survey. Open-ended paragraphs are a nightmare to code and analyze manually.</div>
+          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 8: The Main Survey Questions</h2><p className="text-slate-600 text-lg">Now we move on to crafting the main survey questions. Work through the activities below to learn about how to craft the questions and response options!</p></div>
+          <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-yellow-900"><strong>Rule of Thumb:</strong> Use closed-ended questions (Multiple Choice/Likert Scales) for at least 90% of your survey. Apart from being a nightmare to analyse manually, the presence of many open-ended questions may indicate that what you should be doing is not a survey but a qualitative interview instead.</div>
           <div className="bg-slate-900 text-slate-300 p-6 rounded-xl shadow-lg">
-            <h3 className="font-bold text-xl text-white mb-6">Common Survey Mistakes</h3>
+            <h3 className="font-bold text-xl text-white mb-6">Common Mistakes in Survey Questions</h3>
             
             <div className="mb-6 bg-slate-800 p-4 sm:p-6 rounded-lg border border-slate-700">
               <div className="flex justify-between items-start mb-2"><span className="text-red-400 font-bold uppercase text-xs tracking-wider">Double-Barreled</span>{fixed.q1 && <i className="fa-regular fa-circle-check text-green-400 text-xl"></i>}</div>
@@ -941,8 +941,8 @@
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="border-2 border-slate-200 p-6 rounded-xl bg-white">
-              <h3 className="font-bold text-lg mb-4">Response Validator</h3>
-              <p className="text-sm text-slate-600 mb-4">Click on the critical error in these options:</p>
+              <h3 className="font-bold text-lg mb-4">Common Mistakes in Response Options</h3>
+              <p className="text-sm text-slate-600 mb-4">Response options could also be problematic if they are not <b>comprehensive</b> and <b>mutually exclusive</b> (i.e., do not overlap). For the former, if necessary, an 'Others (Please specify)' option could solve the problem. For the latter, an example of overlapping options is shown below. Click to identify the problematic response option!</p>
               <div className="p-4 bg-slate-50 rounded border mb-4">
                 <p className="font-medium mb-2">How old are you?</p>
                 <ul className="space-y-2">
@@ -954,9 +954,9 @@
               {optionErrorClicked && <div className="text-sm text-red-700 bg-red-50 p-3 rounded"><strong>Not Mutually Exclusive!</strong> Options must never overlap.</div>}
             </div>
             <div className="bg-indigo-50 border-2 border-indigo-200 p-6 rounded-xl flex flex-col justify-center">
-              <h3 className="font-bold text-indigo-900 text-lg mb-2">Why we love the 4-Point Likert Scale</h3>
-              <p className="text-indigo-800 text-sm mb-4">Strongly Disagree / Disagree / Agree / Strongly Agree</p>
-              <p className="text-slate-700">A 5-point scale gives respondents a "Middle/Neutral" trap. <strong>Force them to make a choice!</strong></p>
+              <h3 className="font-bold text-indigo-900 text-lg mb-2">Pro-tip: Using a 4-Point Likert Scale</h3>
+              <p className="text-indigo-800 text-sm mb-4">A 4-point Likert scale refers to using the response options: Strongly Disagree / Disagree / Agree / Strongly Agree</p>
+              <p className="text-slate-700">4-point scales are preferred to 5-point scales beacuse the latter provides a "Middle/Neutral" option, which vast majority of respondents will go for if available. <strong>A 4-point scale forces respondents to think and make a choice.</strong></p>
             </div>
           </div>
         </div>
@@ -979,18 +979,18 @@
               <div className="text-slate-700 text-sm">
                 <p className="font-bold text-purple-900 mb-3"><i className="fa-solid fa-circle-info mr-1"></i> Skip this video if you are already familiar with:</p>
                 <ul className="list-disc pl-5 space-y-1">
-                  <li>Create a New Google Form</li>
-                  <li>Add Form Title & Descriptions</li>
-                  <li>Add & Edit Questions (and the different question types available)</li>
-                  <li>Upload Files in Forms</li>
-                  <li>Add Images or Videos</li>
+                  <li>Creating a New Google Form</li>
+                  <li>Adding Form Title & Descriptions</li>
+                  <li>Adding & Editing Questions (and the different question types available)</li>
+                  <li>Enabling Uploading of Files in Forms</li>
+                  <li>Adding Images or Videos</li>
                   <li>How to Add Sections</li>
-                  <li>Customize the design of Google Forms</li>
-                  <li>Preview Google Forms</li>
-                  <li>Adjust Google Form Settings</li>
-                  <li>Publish Forms</li>
-                  <li>Share Your Google Form</li>
-                  <li>Review Form Responses</li>
+                  <li>Customising the design of Google Forms</li>
+                  <li>Previewing Google Forms</li>
+                  <li>Adjusting Google Form Settings (including customising the Thank You message to let respondents know how the data will be used)</li>
+                  <li>Publishing Forms</li>
+                  <li>Sharing Your Google Form</li>
+                  <li>Reviewing Form Responses</li>
                 </ul>
               </div>
             </div>
@@ -1055,15 +1055,18 @@
           <p className="text-slate-600 text-lg">Here is your final cheatsheet. Screenshot this for your PW journey.</p>
         </div>
         <div className="bg-white shadow-2xl rounded-2xl overflow-hidden border-2 border-slate-800 mx-auto max-w-3xl">
-          <div className="bg-slate-800 text-white p-6 text-center"><h3 className="text-2xl font-bold uppercase tracking-widest">Survey Design Cheatsheet</h3></div>
+          <div className="bg-slate-800 text-white p-6 text-center"><h3 className="text-2xl font-bold uppercase tracking-widest">Sampling and Survey Design Cheatsheet</h3></div>
           <div className="p-0 overflow-x-auto">
             <table className="w-full text-left border-collapse">
-              <thead><tr className="bg-slate-100"><th className="p-4 border-b-2 border-slate-200 font-bold text-slate-800 w-1/2">The Survey Sin</th><th className="p-4 border-b-2 border-slate-200 font-bold text-slate-800 w-1/2">The Fix</th></tr></thead>
+              <thead><tr className="bg-slate-100"><th className="p-4 border-b-2 border-slate-200 font-bold text-slate-800 w-1/2">The Problem</th><th className="p-4 border-b-2 border-slate-200 font-bold text-slate-800 w-1/2">The Fix</th></tr></thead>
               <tbody className="divide-y divide-slate-100 text-slate-700">
-                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Overlapping Options</span>(e.g., 10-20, 20-30)</td><td className="p-4 font-medium text-green-700">Make them Mutually Exclusive (10-19, 20-29).</td></tr>
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Insufficient sample size</span>(e.g., 10-20, 20-30)</td><td className="p-4 font-medium text-green-700">Try your best to hit at least 30.</td></tr>
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Too many demographic questions</span>(e.g., 10-20, 20-30)</td><td className="p-4 font-medium text-green-700">Discard demographic questions that do not serve the purpose of screening, balance test, or comparison of sub-population.</td></tr>
                 <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Double-Barreled</span>("Is it cheap and good?")</td><td className="p-4 font-medium text-green-700">Split into two separate questions.</td></tr>
                 <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Leading Questions</span>("Why is this policy bad?")</td><td className="p-4 font-medium text-green-700">Keep it neutral.</td></tr>
                 <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Vague Phrasing</span>("Do you go often?")</td><td className="p-4 font-medium text-green-700">Use concrete terms ("Do you go 3+ times a week?").</td></tr>
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Response options not comprehensive</span>(e.g., "What is your favourite colour?" - "Red"/"Green"/"Blue")</td><td className="p-4 font-medium text-green-700">Provide an "Other (please specify)" option.</td></tr>
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Overlapping Response Options</span>(e.g., "Which level do you stay on?" - "10-20", "20-30")</td><td className="p-4 font-medium text-green-700">Make them Mutually Exclusive (10-19, 20-29).</td></tr>
               </tbody>
             </table>
           </div>
