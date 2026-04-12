@@ -287,7 +287,7 @@
       return (
         <div className="space-y-8 animate-fadeIn">
           <div>
-            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 2: Hitting the Bullseye</h2>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 2: Representative vs Biased Samples</h2>
             <p className="text-slate-600 text-lg">Now that we understand what a sample is and why we need to conduct sampling, let's move on to the concepts of representative vs. biased samples.</p>
           </div>
 
@@ -306,7 +306,7 @@
 
             <div className="flex gap-4 mb-8">
               <button onClick={() => setSimState('biased')} className="flex-1 bg-red-600 hover:bg-red-500 text-white py-3 rounded-lg font-bold transition-all">
-                Sample the "Tech Club"
+                Sample the "Hack Club"
               </button>
               <button onClick={() => setSimState('representative')} className="flex-1 bg-green-600 hover:bg-green-500 text-white py-3 rounded-lg font-bold transition-all">
                 Sample Randomly
@@ -361,10 +361,16 @@
       const totalLikes = populationData.filter(ans => ans === "Yes").length;
       const truePopPercentage = (totalLikes / populationData.length) * 100;
 
+      // ACTUAL STUDENT NAMES DATABASE:
+      const namesString = "James Smith, Emma Smith, Liam Smith, Olivia Smith, Noah Smith, Ava Smith, Oliver Smith, Isabella Smith, Elijah Smith, Sophia Smith, Mateo Smith, Mia Smith, Lucas Smith, Amelia Smith, Levi Smith, Harper Smith, Ethan Smith, Evelyn Smith, Asher Smith, Charlotte Smith, Leo Smith, Luna Smith, Mason Smith, Camila Smith, Ezra Smith, James Johnson, Emma Johnson, Liam Johnson, Olivia Johnson, Noah Johnson, Ava Johnson, Oliver Johnson, Isabella Johnson, Elijah Johnson, Sophia Johnson, Mateo Johnson, Mia Johnson, Lucas Johnson, Amelia Johnson, Levi Johnson, Harper Johnson, Ethan Johnson, Evelyn Johnson, Asher Johnson, Charlotte Johnson, Leo Johnson, Luna Johnson, Mason Johnson, Camila Johnson, Ezra Johnson, James Williams, Emma Williams, Liam Williams, Olivia Williams, Noah Williams, Ava Williams, Oliver Williams, Isabella Williams, Elijah Williams, Sophia Williams, Mateo Williams, Mia Williams, Lucas Williams, Amelia Williams, Levi Williams, Harper Williams, Ethan Williams, Evelyn Williams, Asher Williams, Charlotte Williams, Leo Williams, Luna Williams, Mason Williams, Camila Williams, Ezra Williams, James Brown, Emma Brown, Liam Brown, Olivia Brown, Noah Brown, Ava Brown, Oliver Brown, Isabella Brown, Elijah Brown, Sophia Brown, Mateo Brown, Mia Brown, Lucas Brown, Amelia Brown, Levi Brown, Harper Brown, Ethan Brown, Evelyn Brown, Asher Brown, Charlotte Brown, Leo Brown, Luna Brown, Mason Brown, Camila Brown, Ezra Brown, James Jones, Emma Jones, Liam Jones, Olivia Jones, Noah Jones, Ava Jones, Oliver Jones, Isabella Jones, Elijah Jones, Sophia Jones, Mateo Jones, Mia Jones, Lucas Jones, Amelia Jones, Levi Jones, Harper Jones, Ethan Jones, Evelyn Jones, Asher Jones, Charlotte Jones, Leo Jones, Luna Jones, Mason Jones, Camila Jones, Ezra Jones, James Garcia, Emma Garcia, Liam Garcia, Olivia Garcia, Noah Garcia, Ava Garcia, Oliver Garcia, Isabella Garcia, Elijah Garcia, Sophia Garcia, Mateo Garcia, Mia Garcia, Lucas Garcia, Amelia Garcia, Levi Garcia, Harper Garcia, Ethan Garcia, Evelyn Garcia, Asher Garcia, Charlotte Garcia, Leo Garcia, Luna Garcia, Mason Garcia, Camila Garcia, Ezra Garcia, James Miller, Emma Miller, Liam Miller, Olivia Miller, Noah Miller, Ava Miller, Oliver Miller, Isabella Miller, Elijah Miller, Sophia Miller, Mateo Miller, Mia Miller, Lucas Miller, Amelia Miller, Levi Miller, Harper Miller, Ethan Miller, Evelyn Miller, Asher Miller, Charlotte Miller, Leo Miller, Luna Miller, Mason Miller, Camila Miller, Ezra Miller, James Davis, Emma Davis, Liam Davis, Olivia Davis, Noah Davis, Ava Davis, Oliver Davis, Isabella Davis, Elijah Davis, Sophia Davis, Mateo Davis, Mia Davis, Lucas Davis, Amelia Davis, Levi Davis, Harper Davis, Ethan Davis, Evelyn Davis, Asher Davis, Charlotte Davis, Leo Davis, Luna Davis, Mason Davis, Camila Davis, Ezra Davis, James Rodriguez, Emma Rodriguez, Liam Rodriguez, Olivia Rodriguez, Noah Rodriguez, Ava Rodriguez, Oliver Rodriguez, Isabella Rodriguez, Elijah Rodriguez, Sophia Rodriguez, Mateo Rodriguez, Mia Rodriguez, Lucas Rodriguez, Amelia Rodriguez, Levi Rodriguez, Harper Rodriguez, Ethan Rodriguez, Evelyn Rodriguez, Asher Rodriguez, Charlotte Rodriguez, Leo Rodriguez, Luna Rodriguez, Mason Rodriguez, Camila Rodriguez, Ezra Rodriguez, James Martinez, Emma Martinez, Liam Martinez, Olivia Martinez, Noah Martinez, Ava Martinez, Oliver Martinez, Isabella Martinez, Elijah Martinez, Sophia Martinez, Mateo Martinez, Mia Martinez, Lucas Martinez, Amelia Martinez, Levi Martinez, Harper Martinez, Ethan Martinez, Evelyn Martinez, Asher Martinez, Charlotte Martinez, Leo Martinez, Luna Martinez, Mason Martinez, Camila Martinez, Ezra Martinez, James Hernandez, Emma Hernandez, Liam Hernandez, Olivia Hernandez, Noah Hernandez, Ava Hernandez, Oliver Hernandez, Isabella Hernandez, Elijah Hernandez, Sophia Hernandez, Mateo Hernandez, Mia Hernandez, Lucas Hernandez, Amelia Hernandez, Levi Hernandez, Harper Hernandez, Ethan Hernandez, Evelyn Hernandez, Asher Hernandez, Charlotte Hernandez, Leo Hernandez, Luna Hernandez, Mason Hernandez, Camila Hernandez, Ezra Hernandez, James Lopez, Emma Lopez, Liam Lopez, Olivia Lopez, Noah Lopez, Ava Lopez, Oliver Lopez, Isabella Lopez, Elijah Lopez, Sophia Lopez, Mateo Lopez, Mia Lopez, Lucas Lopez, Amelia Lopez, Levi Lopez, Harper Lopez, Ethan Lopez, Evelyn Lopez, Asher Lopez, Charlotte Lopez, Leo Lopez, Luna Lopez, Mason Lopez, Camila Lopez, Ezra Lopez, James Gonzalez, Emma Gonzalez, Liam Gonzalez, Olivia Gonzalez, Noah Gonzalez, Ava Gonzalez, Oliver Gonzalez, Isabella Gonzalez, Elijah Gonzalez, Sophia Gonzalez, Mateo Gonzalez, Mia Gonzalez, Lucas Gonzalez, Amelia Gonzalez, Levi Gonzalez, Harper Gonzalez, Ethan Gonzalez, Evelyn Gonzalez, Asher Gonzalez, Charlotte Gonzalez, Leo Gonzalez, Luna Gonzalez, Mason Gonzalez, Camila Gonzalez, Ezra Gonzalez, James Wilson, Emma Wilson, Liam Wilson, Olivia Wilson, Noah Wilson, Ava Wilson, Oliver Wilson, Isabella Wilson, Elijah Wilson, Sophia Wilson, Mateo Wilson, Mia Wilson, Lucas Wilson, Amelia Wilson, Levi Wilson, Harper Wilson, Ethan Wilson, Evelyn Wilson, Asher Wilson, Charlotte Wilson, Leo Wilson, Luna Wilson, Mason Wilson, Camila Wilson, Ezra Wilson, James Anderson, Emma Anderson, Liam Anderson, Olivia Anderson, Noah Anderson, Ava Anderson, Oliver Anderson, Isabella Anderson, Elijah Anderson, Sophia Anderson, Mateo Anderson, Mia Anderson, Lucas Anderson, Amelia Anderson, Levi Anderson, Harper Anderson, Ethan Anderson, Evelyn Anderson, Asher Anderson, Charlotte Anderson, Leo Anderson, Luna Anderson, Mason Anderson, Camila Anderson, Ezra Anderson, James Thomas, Emma Thomas, Liam Thomas, Olivia Thomas, Noah Thomas, Ava Thomas, Oliver Thomas, Isabella Thomas, Elijah Thomas, Sophia Thomas, Mateo Thomas, Mia Thomas, Lucas Thomas, Amelia Thomas, Levi Thomas, Harper Thomas, Ethan Thomas, Evelyn Thomas, Asher Thomas, Charlotte Thomas, Leo Thomas, Luna Thomas, Mason Thomas, Camila Thomas, Ezra Thomas, James Taylor, Emma Taylor, Liam Taylor, Olivia Taylor, Noah Taylor, Ava Taylor, Oliver Taylor, Isabella Taylor, Elijah Taylor, Sophia Taylor, Mateo Taylor, Mia Taylor, Lucas Taylor, Amelia Taylor, Levi Taylor, Harper Taylor, Ethan Taylor, Evelyn Taylor, Asher Taylor, Charlotte Taylor, Leo Taylor, Luna Taylor, Mason Taylor, Camila Taylor, Ezra Taylor, James Moore, Emma Moore, Liam Moore, Olivia Moore, Noah Moore, Ava Moore, Oliver Moore, Isabella Moore, Elijah Moore, Sophia Moore, Mateo Moore, Mia Moore, Lucas Moore, Amelia Moore, Levi Moore, Harper Moore, Ethan Moore, Evelyn Moore, Asher Moore, Charlotte Moore, Leo Moore, Luna Moore, Mason Moore, Camila Moore, Ezra Moore, James Jackson, Emma Jackson, Liam Jackson, Olivia Jackson, Noah Jackson, Ava Jackson, Oliver Jackson, Isabella Jackson, Elijah Jackson, Sophia Jackson, Mateo Jackson, Mia Jackson, Lucas Jackson, Amelia Jackson, Levi Jackson, Harper Jackson, Ethan Jackson, Evelyn Jackson, Asher Jackson, Charlotte Jackson, Leo Jackson, Luna Jackson, Mason Jackson, Camila Jackson, Ezra Jackson, James Martin, Emma Martin, Liam Martin, Olivia Martin, Noah Martin, Ava Martin, Oliver Martin, Isabella Martin, Elijah Martin, Sophia Martin, Mateo Martin, Mia Martin, Lucas Martin, Amelia Martin, Levi Martin, Harper Martin, Ethan Martin, Evelyn Martin, Asher Martin, Charlotte Martin, Leo Martin, Luna Martin, Mason Martin, Camila Martin, Ezra Martin";
+      const populationNames = namesString.split(", ");
+
       const [sampleIds, setSampleIds] = useState([]);
-      const [userInput, setUserInput] = useState('');
-      const [feedback, setFeedback] = useState(null);
-      const [revealed, setRevealed] = useState(false);
+      const [nameInputs, setNameInputs] = useState({});
+      const [namesVerified, setNamesVerified] = useState(false);
+      const [namesFeedback, setNamesFeedback] = useState(null);
+      const [resultsRevealed, setResultsRevealed] = useState(false);
+      const [trueRevealed, setTrueRevealed] = useState(false);
 
       const pickRandom = () => {
         const ids = new Set();
@@ -372,27 +378,48 @@
         while(ids.size < 10) {
           ids.add(Math.floor(Math.random() * 500) + 1);
         }
-        setSampleIds(Array.from(ids).sort((a,b) => a-b));
-        setFeedback(null);
-        setRevealed(false);
-        setUserInput('');
+        const sortedIds = Array.from(ids).sort((a,b) => a-b);
+        setSampleIds(sortedIds);
+        
+        // Reset the inputs
+        const initialInputs = {};
+        sortedIds.forEach(id => initialInputs[id] = '');
+        setNameInputs(initialInputs);
+        setNamesVerified(false);
+        setNamesFeedback(null);
+        setResultsRevealed(false);
+        setTrueRevealed(false);
       };
 
-      const checkAnswer = () => {
-        if(sampleIds.length === 0) return;
-        
-        // Calculate the true answer for these specific 10 students
-        const likesCount = sampleIds.filter(id => likesProjectWork(id)).length;
-        const actualPercentage = (likesCount / 10) * 100;
-        
-        // Allow the student to type "40", "40%", or "0.4"
-        const parsedInput = parseFloat(userInput.replace('%', ''));
+      const handleNameChange = (id, value) => {
+        setNameInputs(prev => ({ ...prev, [id]: value }));
+      };
 
-        if (parsedInput === actualPercentage || parsedInput === likesCount / 10) {
-          setFeedback({ type: 'success', text: `Correct! Exactly ${likesCount} out of 10 students in your sample like PW (${actualPercentage}%).` });
+      const verifyNames = () => {
+        let allCorrect = true;
+        let incorrectIds = [];
+
+        sampleIds.forEach(id => {
+          const expectedName = populationNames[id - 1].toLowerCase().trim();
+          const enteredName = (nameInputs[id] || '').toLowerCase().trim();
+          
+          if (expectedName !== enteredName) {
+            allCorrect = false;
+            incorrectIds.push(id);
+          }
+        });
+
+        if (allCorrect) {
+          setNamesVerified(true);
+          setNamesFeedback({ type: 'success', text: 'All names verified! You correctly matched the IDs to the sampling frame.' });
         } else {
-          setFeedback({ type: 'error', text: `Not quite! Check IDs #${sampleIds.join(', #')} in the Google Sheet carefully.` });
+          setNamesVerified(false);
+          setNamesFeedback({ type: 'error', text: `Not quite! Double check the names for IDs: #${incorrectIds.join(', #')} in the Google Sheet.` });
         }
+      };
+
+      const revealResults = () => {
+        setResultsRevealed(true);
       };
 
       return (
@@ -435,54 +462,85 @@
             
             <div className="text-center mb-8">
               <button onClick={pickRandom} className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto">
-                <i className={`fa-solid fa-arrows-rotate ${sampleIds.length > 0 ? 'animate-spin-once' : ''}`}></i> Generate 10 Random IDs
+                <i className={`fa-solid fa-arrows-rotate ${sampleIds.length > 0 && !resultsRevealed ? 'animate-spin-once' : ''}`}></i> Generate 10 Random IDs
               </button>
             </div>
 
             {sampleIds.length > 0 && (
               <div className="animate-fadeIn border-t border-slate-100 pt-6">
-                <div className="flex flex-wrap gap-2 justify-center mb-8">
-                  {sampleIds.map((id, i) => (
-                    <div key={i} className="bg-indigo-50 text-indigo-900 border-2 border-indigo-200 px-4 py-2 rounded-lg font-bold shadow-sm">
-                      ID #{id}
-                    </div>
-                  ))}
-                </div>
-
+                
                 <div className="bg-slate-50 border border-slate-200 p-6 rounded-xl mb-8">
-                  <p className="font-bold text-slate-800 mb-4 text-center"><strong>Step 3:</strong> Look up these 10 specific IDs in the Google Sheet. What proportion of your sample likes Project Work?</p>
+                  <p className="font-bold text-slate-800 mb-6 text-center"><strong>Step 3:</strong> Look up these 10 IDs in the Google Sheet and enter their names below.</p>
                   
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                    <input 
-                      type="number" 
-                      placeholder="Enter % (e.g. 40)" 
-                      value={userInput}
-                      onChange={(e) => setUserInput(e.target.value)}
-                      className="border-2 border-slate-300 p-3 rounded-lg outline-none focus:border-indigo-500 font-bold text-center w-48 shadow-inner text-lg"
-                    />
-                    <button onClick={checkAnswer} className="bg-green-600 hover:bg-green-500 text-white px-6 py-3 rounded-lg font-bold shadow-md transition-colors flex items-center gap-2">
-                      <i className="fa-solid fa-check"></i> Check Answer
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 max-w-2xl mx-auto">
+                    {sampleIds.map((id) => (
+                      <div key={id} className="flex items-center gap-3">
+                        <span className="bg-indigo-100 text-indigo-900 font-bold px-3 py-2 rounded-lg min-w-[5rem] text-center shadow-sm">ID #{id}</span>
+                        <input 
+                          type="text" 
+                          placeholder="Enter Name" 
+                          value={nameInputs[id] || ''}
+                          onChange={(e) => handleNameChange(id, e.target.value)}
+                          disabled={namesVerified}
+                          className="flex-1 border-2 border-slate-300 p-2 rounded-lg outline-none focus:border-indigo-500 shadow-inner disabled:bg-slate-100 disabled:text-slate-500"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="text-center">
+                    <button 
+                      onClick={verifyNames} 
+                      disabled={namesVerified} 
+                      className={`px-6 py-3 rounded-lg font-bold shadow-md transition-colors flex items-center gap-2 mx-auto ${namesVerified ? 'bg-slate-400 text-white cursor-not-allowed' : 'bg-green-600 hover:bg-green-500 text-white'}`}
+                    >
+                      <i className="fa-solid fa-user-check"></i> Verify Names
                     </button>
                   </div>
 
-                  {feedback && (
-                    <div className={`mt-6 p-4 rounded-lg font-bold flex items-center justify-center gap-2 ${feedback.type === 'success' ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-red-100 text-red-800 border border-red-300 animate-shake'}`}>
-                      <i className={`fa-regular ${feedback.type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark'} text-xl`}></i> {feedback.text}
+                  {namesFeedback && (
+                    <div className={`mt-6 p-4 rounded-lg font-bold flex items-center justify-center gap-2 max-w-2xl mx-auto ${namesFeedback.type === 'success' ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-red-100 text-red-800 border border-red-300 animate-shake'}`}>
+                      <i className={`fa-regular ${namesFeedback.type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark'} text-xl`}></i> {namesFeedback.text}
                     </div>
                   )}
                 </div>
 
-                <div className="text-center">
-                  <button onClick={() => setRevealed(true)} className="text-slate-500 hover:text-indigo-600 font-bold underline mb-4 transition-colors">
-                    Reveal True Population Parameter
-                  </button>
-                  {revealed && (
-                    <div className="bg-slate-800 text-white p-6 rounded-xl shadow-inner animate-fadeIn mx-auto max-w-lg">
-                      <p className="text-lg">In the entire population of 500 students, exactly <strong className="text-emerald-400 text-3xl block my-2">{truePopPercentage}%</strong> like Project Work.</p>
-                      <p className="text-slate-300 mt-4 text-sm leading-relaxed">Did your sample of 10 cluster perfectly around this parameter, or was it off? This is why having a large enough sample size is critical even when picking randomly!</p>
+                {namesVerified && (
+                  <div className="animate-fadeIn">
+                    <div className="bg-blue-50 border border-blue-200 p-6 rounded-xl mb-8 text-center max-w-2xl mx-auto shadow-sm">
+                      <p className="font-bold text-slate-800 mb-6 text-lg"><strong>Step 4:</strong> Now that you have your valid sample, let's collect their survey results!</p>
+                      
+                      {!resultsRevealed ? (
+                        <button onClick={revealResults} className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-4 rounded-xl font-bold shadow-lg transition-colors flex items-center gap-2 mx-auto text-lg">
+                          <i className="fa-solid fa-square-poll-vertical"></i> Reveal Survey Results
+                        </button>
+                      ) : (
+                        <div className="animate-fadeIn bg-white p-6 rounded-xl shadow-inner border border-blue-100">
+                          <p className="text-xl mb-2 text-slate-700 font-medium">Out of your 10 selected students...</p>
+                          <p className="text-4xl font-black text-blue-700 mb-2">
+                            {sampleIds.filter(id => likesProjectWork(id)).length} out of 10 
+                          </p>
+                          <p className="text-lg text-slate-700 font-medium">like Project Work ({ (sampleIds.filter(id => likesProjectWork(id)).length / 10) * 100 }%).</p>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
+
+                    {resultsRevealed && (
+                      <div className="text-center animate-fadeIn">
+                        <button onClick={() => setTrueRevealed(true)} className="text-slate-500 hover:text-indigo-600 font-bold underline mb-4 transition-colors">
+                          Reveal True Population Parameter
+                        </button>
+                        {trueRevealed && (
+                          <div className="bg-slate-800 text-white p-6 rounded-xl shadow-inner animate-fadeIn mx-auto max-w-lg">
+                            <p className="text-lg">In the entire population of 500 students, exactly <strong className="text-emerald-400 text-3xl block my-2">{truePopPercentage}%</strong> like Project Work.</p>
+                            <p className="text-slate-300 mt-4 text-sm leading-relaxed">Did your sample of 10 cluster perfectly around this parameter, or was it off? This is why having a large enough sample size is critical even when picking randomly!</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+
               </div>
             )}
           </div>
