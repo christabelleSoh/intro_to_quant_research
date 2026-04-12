@@ -425,8 +425,8 @@
       return (
         <div className="space-y-8 animate-fadeIn">
           <div>
-            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 3: The Gold Standard</h2>
-            <p className="text-slate-600 text-lg">Simple Random Sampling (SRS)</p>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 3: Simple Random Sampling</h2>
+            <p className="text-slate-600 text-lg">Now that you understand the imporatnce of having a representative sample, we look at how may we draw one. The process of drawing a sample is called the 'sampling method'. As an introduction to sampling methods, we will learn about simple random sampling, which is a sampling method that results in a representative sample because it aligns with the golden rule:</p>
           </div>
 
           <div className="bg-amber-50 border border-amber-200 p-6 rounded-xl shadow-sm">
@@ -440,7 +440,7 @@
             {/* YouTube Embed Placeholder for Section 3 */}
             <iframe 
               className="w-full h-full object-cover" 
-              src="https://www.youtube.com/embed/KJPicqtY88o" 
+              src="https://www.youtube.com/embed/dcMXZMv1uTs" 
               title="YouTube video player" 
               frameBorder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -449,16 +449,16 @@
           </div>
 
           <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
-            <h3 className="font-bold text-xl mb-4 text-slate-800 text-center">Mini-Game: Conduct an SRS!</h3>
+            <h3 className="font-bold text-xl mb-4 text-slate-800 text-center">Mini-Exercise: Carry out simple random sampling</h3>
             
             <div className="bg-blue-50 border border-blue-200 p-4 sm:p-6 rounded-lg mb-6 text-slate-700 shadow-inner">
-              <p className="mb-3 font-medium"><strong>Step 1:</strong> Open your population sampling frame (the school registry) here:</p>
+              <p className="mb-3 font-medium"><strong>Step 1:</strong> Imagine your project is on improving the project work (PW) experience for TJC JC1 students. As part of your research on prevalence, you want to find out the proportions of TJC students who enjoy or do not enjoy PW. You have somehow convinced the Principal to release the namelist of all TJC JC1 students (your population of interest) to you:</p>
               <a href="https://docs.google.com/spreadsheets/d/1X_IWzv8h-rsxat0qTyfprBt4nI2ui9HEz1nYNgizkns/edit?usp=sharing" target="_blank" className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg">
                 <i className="fa-solid fa-table"></i> Open Population Database
               </a>
             </div>
 
-            <p className="text-center text-slate-600 mb-4 font-medium"><strong>Step 2:</strong> Use the Random Number Generator to select 10 students.</p>
+            <p className="text-center text-slate-600 mb-4 font-medium"><strong>Step 2:</strong> You only have enough resources to sample 10 students to survey them. Use the Random Number Generator to select 10 students.</p>
             
             <div className="text-center mb-8">
               <button onClick={pickRandom} className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto">
@@ -470,7 +470,7 @@
               <div className="animate-fadeIn border-t border-slate-100 pt-6">
                 
                 <div className="bg-slate-50 border border-slate-200 p-6 rounded-xl mb-8">
-                  <p className="font-bold text-slate-800 mb-6 text-center"><strong>Step 3:</strong> Look up these 10 IDs in the Google Sheet and enter their names below.</p>
+                  <p className="font-bold text-slate-800 mb-6 text-center"><strong>Step 3:</strong> Look up these 10 IDs in the Population Database (i.e., the Google Sheet) and enter their names below. These 10 students will form your sample.</p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 max-w-2xl mx-auto">
                     {sampleIds.map((id) => (
@@ -533,7 +533,7 @@
                         {trueRevealed && (
                           <div className="bg-slate-800 text-white p-6 rounded-xl shadow-inner animate-fadeIn mx-auto max-w-lg">
                             <p className="text-lg">In the entire population of 500 students, exactly <strong className="text-emerald-400 text-3xl block my-2">{truePopPercentage}%</strong> like Project Work.</p>
-                            <p className="text-slate-300 mt-4 text-sm leading-relaxed">Did your sample of 10 cluster perfectly around this parameter, or was it off? This is why having a large enough sample size is critical even when picking randomly!</p>
+                            <p className="text-slate-300 mt-4 text-sm leading-relaxed">Did your sample of 10 cluster perfectly around this parameter, or was it off? This is why having a large enough sample size is critical even when picking randomly! We will look at sample sizes in the next section!</p>
                           </div>
                         )}
                       </div>
