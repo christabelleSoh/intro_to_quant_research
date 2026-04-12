@@ -1,5 +1,818 @@
-<html>
-  <body>
-    <p>Hello world</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The SG Sample: PW Data</title>
+  
+  <!-- Load Tailwind CSS for styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Load FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Load React directly in the browser -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  
+  <!-- Load Babel to understand the code below -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    /* Custom Animations */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fadeIn { animation: fadeIn 0.4s ease-out forwards; }
+    
+    @keyframes bounce { 
+      0%, 100% { transform: translateY(-15%); animation-timing-function: cubic-bezier(0.8,0,1,1); } 
+      50% { transform: translateY(0); animation-timing-function: cubic-bezier(0,0,0.2,1); } 
+    }
+    .animate-bounce { animation: bounce 1s infinite; }
+    
+    @keyframes pulse-fast { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    .animate-pulse { animation: pulse-fast 1.5s ease-in-out infinite; }
+    
+    @keyframes spin-once { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .animate-spin-once { animation: spin-once 0.5s ease-in-out; }
+    
+    @keyframes shake { 
+      0%, 100% { transform: translateX(0); } 
+      25% { transform: translateX(-5px); } 
+      75% { transform: translateX(5px); } 
+    }
+    .animate-shake { animation: shake 0.3s ease-in-out; }
+  </style>
+</head>
+<body class="bg-slate-50">
+
+  <!-- This is where our app will be injected -->
+  <div id="root"></div>
+
+  <!-- Our Application Code -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const SgSampleModule = () => {
+      const [currentSection, setCurrentSection] = useState(1);
+      const totalSections = 10;
+
+      const nextSection = () => setCurrentSection((prev) => Math.min(prev + 1, totalSections));
+      const prevSection = () => setCurrentSection((prev) => Math.max(prev - 1, 1));
+
+      return (
+        <div className="min-h-screen text-slate-800 font-sans selection:bg-blue-200 pb-28">
+          {/* Header */}
+          <header className="bg-blue-600 text-white p-4 shadow-md sticky top-0 z-50">
+            <div className="max-w-4xl mx-auto flex justify-between items-center">
+              <h1 className="text-xl md:text-2xl font-bold flex items-center gap-2">
+                <i className="fa-solid fa-bullseye text-2xl"></i> The SG Sample: Making Your PW Data Count
+              </h1>
+              <div className="text-sm font-medium bg-blue-700 px-3 py-1 rounded-full">
+                Section {currentSection} / {totalSections}
+              </div>
+            </div>
+          </header>
+
+          {/* Main Content Area */}
+          <main className="max-w-4xl mx-auto p-4 md:p-8 mt-4 bg-white shadow-lg rounded-xl mb-8 min-h-[70vh]">
+            {currentSection === 1 && <Section1 />}
+            {currentSection === 2 && <Section2 />}
+            {currentSection === 3 && <Section3 />}
+            {currentSection === 4 && <Section4 />}
+            {currentSection === 5 && <Section5 />}
+            {currentSection === 6 && <Section6 />}
+            {currentSection === 7 && <Section7 />}
+            {currentSection === 8 && <Section8 />}
+            {currentSection === 9 && <Section9 />}
+            {currentSection === 10 && <Section10 />}
+          </main>
+
+          {/* Navigation Footer */}
+          <footer className="fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 p-4 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-50">
+            <div className="max-w-4xl mx-auto flex justify-between items-center">
+              <button
+                onClick={prevSection}
+                disabled={currentSection === 1}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-colors ${
+                  currentSection === 1 ? 'text-slate-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-50'
+                }`}
+              >
+                <i className="fa-solid fa-arrow-left"></i> Previous
+              </button>
+              
+              {/* Progress Bar */}
+              <div className="hidden md:flex flex-1 mx-8 h-2 bg-slate-100 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-blue-500 transition-all duration-500" 
+                  style={{ width: `${(currentSection / totalSections) * 100}%` }}
+                ></div>
+              </div>
+
+              <button
+                onClick={nextSection}
+                disabled={currentSection === totalSections}
+                className={`flex items-center gap-2 px-6 py-2 rounded-lg font-medium transition-colors ${
+                  currentSection === totalSections ? 'bg-slate-300 text-slate-500 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'
+                }`}
+              >
+                {currentSection === totalSections ? 'Completed' : 'Next'} <i className="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+          </footer>
+        </div>
+      );
+    };
+
+    // --- SECTION 1: OVERVIEW ---
+    const Section1 = () => {
+      const [draggables, setDraggables] = useState([
+        { id: 1, text: 'All JC students in SG', correct: 'pop', status: 'idle' },
+        { id: 2, text: '50 students from your JC', correct: 'samp', status: 'idle' },
+        { id: 3, text: 'All the Laksa in the pot', correct: 'pop', status: 'idle' },
+        { id: 4, text: 'One spoonful of Laksa', correct: 'samp', status: 'idle' },
+      ]);
+      const [quizAnswered, setQuizAnswered] = useState(null);
+      const [feedbackMsg, setFeedbackMsg] = useState(null);
+
+      const handleDragStart = (e, id) => e.dataTransfer.setData('dragId', id);
+      
+      const handleDrop = (e, zone) => {
+        const id = parseInt(e.dataTransfer.getData('dragId'));
+        const draggedItem = draggables.find(d => d.id === id);
+
+        if (draggedItem.correct === zone) {
+          setDraggables(prev => prev.map(item => {
+            if (item.id === id) return { ...item, status: 'correct', droppedZone: zone };
+            return item;
+          }));
+          setFeedbackMsg({ type: 'success', text: `Correct! "${draggedItem.text}" is a ${zone === 'pop' ? 'Population' : 'Sample'}.` });
+          setTimeout(() => setFeedbackMsg(null), 3000);
+        } else {
+          setDraggables(prev => prev.map(item => {
+            if (item.id === id) return { ...item, status: 'wrong' };
+            return item;
+          }));
+          setFeedbackMsg({ type: 'error', text: `Oops! Try again.` });
+          setTimeout(() => {
+            setDraggables(prev => prev.map(item => {
+              if (item.id === id) return { ...item, status: 'idle' };
+              return item;
+            }));
+            setFeedbackMsg(null);
+          }, 1500);
+        }
+      };
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 1: The Big Picture</h2>
+            <p className="text-slate-600 text-lg">Establish the fundamental vocabulary and the "why" of sampling.</p>
+          </div>
+
+          <div className="bg-slate-900 rounded-xl aspect-video flex flex-col items-center justify-center text-white relative overflow-hidden shadow-lg border-4 border-slate-800">
+            {/* The Video Element */}
+            <video className="w-full h-full object-cover" controls preload="auto">
+              <source src="laksa.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
+            <h3 className="font-bold text-xl text-blue-900 mb-4">Interactive: Classify the Scenarios</h3>
+            <p className="mb-4 text-slate-700">Drag the green items into the correct boxes below.</p>
+            
+            <div className="h-6 mb-2">
+              {feedbackMsg && (
+                <div className={`text-sm font-bold flex items-center gap-2 ${feedbackMsg.type === 'success' ? 'text-green-600' : 'text-red-500 animate-pulse'}`}>
+                  <i className={`fa-regular ${feedbackMsg.type === 'success' ? 'fa-circle-check' : 'fa-circle-xmark'}`}></i>
+                  {feedbackMsg.text}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-wrap gap-3 mb-8 min-h-[40px]">
+              {draggables.filter(d => d.status === 'idle' || d.status === 'wrong').map(d => (
+                <div 
+                  key={d.id} 
+                  draggable={d.status === 'idle'} 
+                  onDragStart={(e) => handleDragStart(e, d.id)}
+                  className={`px-4 py-2 rounded-lg shadow-sm font-medium transition-all ${
+                    d.status === 'wrong' 
+                      ? 'bg-red-100 border-2 border-red-500 text-red-800 animate-pulse' 
+                      : 'bg-emerald-100 border-2 border-emerald-500 text-emerald-800 cursor-grab active:cursor-grabbing'
+                  }`}
+                >
+                  {d.text}
+                </div>
+              ))}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div 
+                onDragOver={(e) => e.preventDefault()} 
+                onDrop={(e) => handleDrop(e, 'pop')}
+                className="border-4 border-dashed border-slate-300 rounded-xl p-6 min-h-[150px] bg-white flex flex-col items-center transition-colors hover:border-blue-400"
+              >
+                <h4 className="font-bold text-slate-500 text-xl mb-4 flex items-center gap-2"><i className="fa-solid fa-users"></i> POPULATION</h4>
+                {draggables.filter(d => d.status === 'correct' && d.droppedZone === 'pop').map(d => (
+                  <div key={d.id} className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded w-full text-center mb-2 animate-fadeIn">{d.text}</div>
+                ))}
+              </div>
+              
+              <div 
+                onDragOver={(e) => e.preventDefault()} 
+                onDrop={(e) => handleDrop(e, 'samp')}
+                className="border-4 border-dashed border-slate-300 rounded-xl p-6 min-h-[150px] bg-white flex flex-col items-center transition-colors hover:border-blue-400"
+              >
+                <h4 className="font-bold text-slate-500 text-xl mb-4 flex items-center gap-2"><i className="fa-solid fa-magnifying-glass"></i> SAMPLE</h4>
+                {draggables.filter(d => d.status === 'correct' && d.droppedZone === 'samp').map(d => (
+                  <div key={d.id} className="bg-emerald-100 text-emerald-800 px-3 py-1 rounded w-full text-center mb-2 animate-fadeIn">{d.text}</div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
+            <h3 className="font-bold text-lg mb-4">Knowledge Check</h3>
+            <p className="mb-4 font-medium">What is "Statistical Inference"?</p>
+            <div className="space-y-3">
+              <button onClick={() => setQuizAnswered('wrong1')} className={`w-full text-left p-3 rounded-lg border ${quizAnswered === 'wrong1' ? 'bg-red-50 border-red-500' : 'hover:bg-slate-50 border-slate-200'}`}>
+                A. Surveying every single person in Singapore.
+              </button>
+              <button onClick={() => setQuizAnswered('correct')} className={`w-full text-left p-3 rounded-lg border ${quizAnswered === 'correct' ? 'bg-green-50 border-green-500 font-bold' : 'hover:bg-slate-50 border-slate-200'}`}>
+                B. Using data from a small sample to make an educated guess about the whole population.
+              </button>
+              <button onClick={() => setQuizAnswered('wrong2')} className={`w-full text-left p-3 rounded-lg border ${quizAnswered === 'wrong2' ? 'bg-red-50 border-red-500' : 'hover:bg-slate-50 border-slate-200'}`}>
+                C. Making sure your survey questions are grammar-checked.
+              </button>
+            </div>
+            {quizAnswered === 'correct' && <p className="text-green-600 font-bold mt-4 flex items-center gap-2"><i className="fa-regular fa-circle-check"></i> Spot on! You use the sample to infer reality.</p>}
+            {quizAnswered && quizAnswered !== 'correct' && <p className="text-red-500 font-bold mt-4 flex items-center gap-2"><i className="fa-regular fa-circle-xmark"></i> Not quite. Think about the Laksa example.</p>}
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 2: REPRESENTATIVE VS BIAS ---
+    const Section2 = () => {
+      const [simState, setSimState] = useState('idle');
+
+      const dots = Array.from({ length: 100 }).map((_, i) => ({
+        id: i,
+        type: i < 50 ? 'blue' : 'orange',
+        isTechClub: i < 15,
+      }));
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 2: Hitting the Bullseye</h2>
+            <p className="text-slate-600 text-lg">Representative vs. Biased Samples</p>
+          </div>
+
+          <div className="bg-white border-l-4 border-blue-500 p-6 rounded-r-xl shadow-sm">
+            <p className="text-lg">
+              <strong className="text-blue-700">Representative:</strong> A sample that looks like a mini-version of the population.<br/>
+              <strong className="text-red-600">Bias:</strong> Systematically favoring one specific group over another.
+            </p>
+          </div>
+
+          <div className="bg-slate-800 rounded-xl p-6 text-white shadow-xl">
+            <h3 className="font-bold text-xl mb-2 text-blue-300">Simulation: The Scatter Plot Game</h3>
+            <p className="text-slate-300 mb-6">
+              Population: 1,000 JC students. True Parameter: <span className="text-blue-400 font-bold">50% Love Online Learning</span> vs <span className="text-orange-400 font-bold">50% Hate It</span>.
+            </p>
+
+            <div className="flex gap-4 mb-8">
+              <button onClick={() => setSimState('biased')} className="flex-1 bg-red-600 hover:bg-red-500 text-white py-3 rounded-lg font-bold transition-all">
+                Sample the "Tech Club"
+              </button>
+              <button onClick={() => setSimState('representative')} className="flex-1 bg-green-600 hover:bg-green-500 text-white py-3 rounded-lg font-bold transition-all">
+                Sample Randomly
+              </button>
+            </div>
+
+            <div className="grid grid-cols-10 gap-2 mb-6 p-4 bg-slate-900 rounded-lg max-w-lg mx-auto">
+              {dots.map(dot => {
+                let isHighlighted = false;
+                let isFaded = false;
+                if (simState === 'biased') {
+                  isHighlighted = dot.isTechClub;
+                  isFaded = !dot.isTechClub;
+                } else if (simState === 'representative') {
+                  isHighlighted = dot.id % 6 === 0;
+                  isFaded = !isHighlighted;
+                }
+                return (
+                  <div key={dot.id} className={`w-4 h-4 rounded-full mx-auto transition-all duration-500 ${dot.type === 'blue' ? 'bg-blue-400' : 'bg-orange-400'} ${isHighlighted ? 'scale-150 ring-2 ring-white shadow-[0_0_10px_rgba(255,255,255,0.8)]' : ''} ${isFaded ? 'opacity-20' : ''}`} />
+                );
+              })}
+            </div>
+
+            <div className="h-24 flex items-center justify-center">
+              {simState === 'biased' && (
+                <div className="text-center animate-bounce">
+                  <h4 className="text-3xl font-black text-red-500 mb-1 flex items-center gap-2 justify-center"><i className="fa-solid fa-triangle-exclamation"></i> BIASED!</h4>
+                  <p className="text-red-200">Result: 90% Love Online Learning. You completely missed the true 50%!</p>
+                </div>
+              )}
+              {simState === 'representative' && (
+                <div className="text-center animate-bounce">
+                  <h4 className="text-3xl font-black text-green-400 mb-1 flex items-center gap-2 justify-center"><i className="fa-regular fa-circle-check"></i> REPRESENTATIVE!</h4>
+                  <p className="text-green-200">Result: 48% Love Online Learning. Your sample clustered around the true 50%.</p>
+                </div>
+              )}
+              {simState === 'idle' && <p className="text-slate-400 italic">Click a button to collect your sample data.</p>}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 3: SIMPLE RANDOM SAMPLING ---
+    const Section3 = () => {
+      const allNames = ['Aisha', 'Ben', 'Chloe', 'Daniel', 'Ethan', 'Fatimah', 'Gideon', 'Hui Ling', 'Irfan', 'Jian Hao', 'Kavitha', 'Leon', 'Maya', 'Nabil', 'Olivia', 'Priya', 'Qing', 'Ryan', 'Sarah', 'Tariq'];
+      const [selected, setSelected] = useState([]);
+
+      const pickRandom = () => {
+        const shuffled = [...allNames].sort(() => 0.5 - Math.random());
+        setSelected(shuffled.slice(0, 5));
+      };
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 3: The Gold Standard</h2>
+            <p className="text-slate-600 text-lg">Simple Random Sampling (SRS)</p>
+          </div>
+
+          <div className="bg-amber-50 border border-amber-200 p-6 rounded-xl shadow-sm">
+            <h3 className="font-bold text-amber-900 text-xl mb-2">The Golden Rule</h3>
+            <p className="text-amber-800 text-lg font-medium">
+              Every single member of the population must have an <strong className="text-black bg-amber-200 px-1">equal and independent chance</strong> of being selected.
+            </p>
+          </div>
+
+          <div className="bg-slate-900 rounded-xl aspect-video flex flex-col items-center justify-center text-white relative shadow-lg">
+            <i className="fa-regular fa-circle-play text-6xl opacity-50 mb-4 hover:opacity-100 hover:scale-110 transition-all cursor-pointer text-blue-400"></i>
+            <p className="font-semibold text-center px-4">Video Placeholder: The MOE/School Registry Method</p>
+            <ol className="text-sm text-slate-400 mt-4 text-left list-decimal list-inside px-8">
+              <li>Define population (All JC1s)</li>
+              <li>Get sampling frame (Nominal Roll)</li>
+              <li>Assign numbers</li>
+              <li>Random Number Generator</li>
+            </ol>
+          </div>
+
+          <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
+            <h3 className="font-bold text-xl mb-4 text-slate-800 text-center">Mini-Game: Be the RNG</h3>
+            <p className="text-center text-slate-600 mb-6">Population size: 20. Target Sample size: 5.</p>
+            
+            <div className="flex flex-wrap gap-2 justify-center mb-8">
+              {allNames.map((name, i) => (
+                <div key={i} className={`px-3 py-1 rounded-full text-sm font-medium border-2 transition-all duration-500 ${selected.includes(name) ? 'bg-blue-600 text-white border-blue-600 scale-110 shadow-md' : 'bg-slate-100 text-slate-500 border-slate-200'}`}>
+                  #{i+1} {name}
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <button onClick={pickRandom} className="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all flex items-center gap-2 mx-auto">
+                <i className={`fa-solid fa-arrows-rotate ${selected.length > 0 ? 'animate-spin-once' : ''}`}></i> Generate SRS
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 4: CONVENIENCE SAMPLING ---
+    const Section4 = () => {
+      const [choice, setChoice] = useState(null);
+      const [reflection, setReflection] = useState('');
+      const [submitted, setSubmitted] = useState(false);
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 4: The Reality Check</h2>
+            <p className="text-slate-600 text-lg">Convenience Sampling in PW</p>
+          </div>
+
+          <div className="bg-white shadow-lg border border-slate-200 rounded-xl overflow-hidden">
+            <div className="bg-slate-800 text-white p-6">
+              <h3 className="font-bold text-xl mb-2">Scenario: The Tight Deadline</h3>
+              <p>You have a project due in two weeks on student stress levels. You need 50 responses. What's your sampling plan?</p>
+            </div>
+            
+            <div className="p-6 grid md:grid-cols-2 gap-4">
+              <button onClick={() => setChoice('A')} className={`p-4 rounded-xl border-2 text-left transition-all ${choice === 'A' ? 'border-red-500 bg-red-50' : 'border-slate-200 hover:border-slate-400'}`}>
+                <strong className="block mb-2 text-slate-800">Option A: The Idealist</strong>
+                <span className="text-slate-600 text-sm">Attempt an SRS by asking the Principal for a nominal roll of all 1,500 students.</span>
+              </button>
+              
+              <button onClick={() => setChoice('B')} className={`p-4 rounded-xl border-2 text-left transition-all ${choice === 'B' ? 'border-emerald-500 bg-emerald-50' : 'border-slate-200 hover:border-slate-400'}`}>
+                <strong className="block mb-2 text-slate-800">Option B: The Realist</strong>
+                <span className="text-slate-600 text-sm">Post the Google Form link on your class WhatsApp/Telegram group and ask friends to fill it out.</span>
+              </button>
+            </div>
+
+            {choice === 'A' && (
+              <div className="p-4 mx-6 mb-6 bg-red-100 text-red-900 rounded-lg flex gap-3 animate-fadeIn">
+                <i className="fa-regular fa-circle-xmark mt-1"></i>
+                <p><strong>Access Denied!</strong> Principals usually don't give out student lists due to PDPA privacy laws. Plus, tracking down the 50 random students you selected across the whole school would take weeks. Try again!</p>
+              </div>
+            )}
+
+            {choice === 'B' && (
+              <div className="p-4 mx-6 mb-6 bg-emerald-100 text-emerald-900 rounded-lg flex gap-3 animate-fadeIn">
+                <i className="fa-regular fa-circle-check mt-1"></i>
+                <div><p><strong>Success... sort of!</strong> This is called <strong>Convenience Sampling</strong>. It is exactly what 99% of students do for PW.</p></div>
+              </div>
+            )}
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+              <thead className="bg-slate-100 text-slate-700">
+                <tr><th className="p-4 text-left border-b">Feature</th><th className="p-4 text-left border-b">Simple Random (SRS)</th><th className="p-4 text-left border-b">Convenience Sampling</th></tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                <tr><td className="p-4 font-bold text-slate-800">Effort Level</td><td className="p-4 text-red-600 font-medium">High (Needs complete lists)</td><td className="p-4 text-green-600 font-medium">Low (Quick and easy)</td></tr>
+                <tr><td className="p-4 font-bold text-slate-800">Bias Level</td><td className="p-4 text-green-600 font-medium">Low (Representative)</td><td className="p-4 text-red-600 font-medium">High (Only represents your circle)</td></tr>
+                <tr><td className="p-4 font-bold text-slate-800">Best For</td><td className="p-4 text-slate-600">Massive academic studies, Govt Polling</td><td className="p-4 text-slate-600">School projects, preliminary research</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="bg-blue-50 border border-blue-100 p-6 rounded-xl">
+            <h3 className="font-bold text-lg mb-2">Final Reflection</h3>
+            <p className="text-slate-700 mb-4">Since you will likely use convenience sampling for your project, your sample will be biased. Write one sentence you can include in your report's "Limitations" section to acknowledge this.</p>
+            <textarea className="w-full p-3 border border-slate-300 rounded-lg mb-3 focus:ring-2 focus:ring-blue-500 outline-none" rows="3" placeholder="Type your reflection here..." value={reflection} onChange={(e) => setReflection(e.target.value)}></textarea>
+            <button onClick={() => setSubmitted(true)} className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700">Submit</button>
+            {submitted && (
+              <div className="mt-4 p-4 bg-white border border-green-200 rounded-lg text-green-800 animate-fadeIn">
+                <strong>Model Answer:</strong> "A limitation of our study is the use of convenience sampling via social media, which may result in a sample that overrepresents students from similar educational backgrounds to the researchers and may not perfectly reflect the broader youth population."
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 5: SAMPLE SIZE ---
+    const Section5 = () => {
+      const [sliderVal, setSliderVal] = useState(10);
+      const [popSize, setPopSize] = useState(1000);
+      
+      const calcSampleSize = (N) => {
+        if (!N || N <= 0) return 0;
+        const n0 = 384.16;
+        return Math.ceil(n0 / (1 + ((n0 - 1) / N)));
+      };
+
+      const recommendedSize = calcSampleSize(popSize);
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div>
+            <h2 className="text-3xl font-bold text-slate-800 mb-2">Section 5: Sample Size</h2>
+            <p className="text-slate-600 text-lg">How many people is enough?</p>
+          </div>
+
+          <div className="bg-white border border-slate-200 p-6 rounded-xl shadow-sm">
+            <h3 className="font-bold text-xl mb-2">Activity: The Extremes</h3>
+            <p className="text-slate-600 mb-6">Move the slider below to see how your sample size affects the probability of bias. Notice what happens when you sample just a few people versus the entire population.</p>
+            
+            <div className="mb-8 p-4 sm:p-6 border-2 border-blue-100 bg-blue-50/50 rounded-xl">
+              <label className="flex justify-between items-center text-sm font-bold text-blue-800 mb-4 uppercase tracking-wide">
+                <span>Drag to adjust sample size</span>
+                <span className="bg-blue-600 text-white px-3 py-1 rounded-md text-xs shadow-sm">
+                  {sliderVal === 100 ? 'Census (All)' : `Size: ${sliderVal}`}
+                </span>
+              </label>
+              <input type="range" min="1" max="100" value={sliderVal} onChange={(e) => setSliderVal(parseInt(e.target.value))} className="w-full h-4 bg-slate-300 rounded-lg appearance-none cursor-pointer accent-blue-600 hover:accent-blue-700 transition-all shadow-inner" />
+              <div className="flex justify-between text-xs font-bold text-slate-500 px-1 mt-3">
+                <span>1</span><span>Whole population</span>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <div className="flex justify-between mb-2">
+                <span className="font-bold text-slate-700 uppercase text-sm tracking-wide">Estimated Probability of Bias</span>
+                <span className="font-bold text-red-600 text-lg">{100 - sliderVal}%</span>
+              </div>
+              <div className="w-full bg-slate-100 border border-slate-200 rounded-full h-8 overflow-hidden relative shadow-inner">
+                <div className="h-full transition-all duration-300 bg-red-500 relative" style={{ width: `${100 - sliderVal}%`, opacity: Math.max(0.3, (100 - sliderVal) / 100) }}>
+                  <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,rgba(255,255,255,0.15)_10px,rgba(255,255,255,0.15)_20px)]"></div>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-center p-6 rounded-xl min-h-[150px] flex items-center justify-center transition-colors duration-500" style={{ backgroundColor: `rgba(59, 130, 246, ${sliderVal/200})` }}>
+              {sliderVal === 100 ? (
+                <p className="text-lg font-medium text-slate-800">
+                  <span className="text-emerald-600 font-bold block mb-2 text-2xl">Zero Bias (Census)</span>
+                  If you sample the whole population, you are no longer drawing a sample but are conducting a census instead. In this case, the bias is zero.
+                </p>
+              ) : sliderVal < 30 ? (
+                <p className="text-lg font-medium text-slate-700">
+                  <span className="text-red-500 font-bold block mb-2 text-2xl">High Risk of Bias</span>
+                  The smaller the sample size, the higher the chance of collecting a biased sample. If you only collect data from two people, there is a reasonable chance that both have extreme attitudes!
+                </p>
+              ) : (
+                <p className="text-lg font-medium text-slate-800">
+                  <span className="text-green-600 font-bold block mb-2 text-2xl">Lower Risk of Bias</span>
+                  The larger the sample size, the lower the chance of collecting a biased sample. If you collect data from a hundred people, it is very unlikely that all hundred have extreme attitudes.
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-blue-50 border border-blue-200 p-6 rounded-xl">
+              <h3 className="font-bold text-lg mb-2">Real-World Industry Standard</h3>
+              <p className="text-sm text-slate-700 mb-4">Professional researchers aim for a <strong>95% confidence level</strong> and a <strong>5% margin of error</strong>.</p>
+              <div className="bg-white p-4 rounded-lg shadow-inner mb-4">
+                <label className="block text-sm font-bold text-slate-600 mb-1">Enter Target Population Size:</label>
+                <input type="number" value={popSize} onChange={(e) => setPopSize(parseInt(e.target.value) || '')} className="w-full border p-2 rounded focus:ring-2 focus:ring-blue-500 outline-none text-lg" />
+              </div>
+              <div className="bg-blue-600 text-white p-4 rounded-lg text-center shadow-md">
+                <span className="block text-sm opacity-80 uppercase tracking-wide">Required Sample Size</span>
+                <span className="text-4xl font-black">{recommendedSize}</span>
+              </div>
+            </div>
+
+            <div className="bg-slate-800 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
+              <h3 className="font-bold text-2xl mb-4 text-emerald-400">The PW Reality (N=30)</h3>
+              <p className="mb-4 text-slate-300">For school project work, getting 300+ responses is often impossible. Instead, a recognized minimum is <strong>30 respondents</strong>.</p>
+              <p className="text-sm text-slate-400 bg-slate-900 p-4 rounded-lg border border-slate-700">
+                Why 30? It allows a mathematical concept called the <strong>Central Limit Theorem</strong> to hold, which basically means your data distribution starts behaving normally enough to do statistical analysis.
+              </p>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 6: SURVEY DESIGN ---
+    const Section6 = () => {
+      const [funnel, setFunnel] = useState([]);
+      const [options, setOptions] = useState([
+        { id: 'demo', text: 'Age/Gender (The Filter)', correctIndex: 0 },
+        { id: 'warm', text: 'How do you travel to school? (Warm-up)', correctIndex: 1 },
+        { id: 'deep', text: 'Describe a time public transport caused stress. (Deep Dive)', correctIndex: 2 },
+        { id: 'end', text: 'Thank you message (Debrief)', correctIndex: 3 }
+      ]);
+      const [errorMsg, setErrorMsg] = useState('');
+
+      const addToFunnel = (option) => {
+        if (funnel.length === 0 && option.correctIndex !== 0) {
+          setErrorMsg("Whoa, too fast! Your respondent got overwhelmed and closed the tab. Start with basic filters!");
+          return;
+        }
+        if (funnel.length === 1 && option.correctIndex !== 1) {
+          setErrorMsg("Don't jump straight into the heavy stuff! Warm them up first.");
+          return;
+        }
+        setErrorMsg('');
+        setFunnel([...funnel, option]);
+        setOptions(options.filter(o => o.id !== option.id));
+      };
+
+      const resetFunnel = () => {
+        setOptions([...funnel, ...options].sort((a,b) => a.correctIndex - b.correctIndex));
+        setFunnel([]);
+        setErrorMsg('');
+      };
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 6: Survey Design Overview</h2><p className="text-slate-600 text-lg">The "Funnel Approach" - A survey is a journey, not a random list.</p></div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="font-bold text-xl mb-4">Click to build your survey funnel in order:</h3>
+              <div className="space-y-3">
+                {options.map(opt => (
+                  <button key={opt.id} onClick={() => addToFunnel(opt)} className="w-full text-left bg-white border-2 border-blue-200 hover:border-blue-500 hover:bg-blue-50 p-4 rounded-xl shadow-sm transition-all font-medium text-slate-700">
+                    + {opt.text}
+                  </button>
+                ))}
+                {options.length === 0 && <div className="p-4 bg-green-100 text-green-800 rounded-xl font-bold text-center border border-green-300">All elements placed!</div>}
+              </div>
+              {errorMsg && <div className="mt-4 p-4 bg-red-100 text-red-700 rounded-lg flex items-start gap-2 border border-red-200 animate-shake"><i className="fa-solid fa-triangle-exclamation mt-1"></i> <p>{errorMsg}</p></div>}
+            </div>
+            <div className="bg-slate-100 p-6 rounded-xl border-2 border-slate-200 flex flex-col items-center">
+              <h3 className="font-bold text-slate-500 uppercase tracking-widest mb-6 text-sm">Your Survey Funnel</h3>
+              <div className="w-full flex flex-col items-center">
+                {funnel.map((item, index) => (
+                  <div key={item.id} className="bg-blue-600 text-white p-4 mb-2 shadow-md flex items-center justify-center font-bold text-center animate-fadeIn" style={{ width: `${100 - (index * 15)}%`, borderRadius: index === 3 || index === 0 ? '1rem' : '0.2rem' }}>
+                    {index + 1}. {item.text.split(' (')[0]}
+                  </div>
+                ))}
+                {funnel.length === 4 && <p className="text-green-600 font-bold mt-4 animate-bounce">Perfect Flow! <i className="fa-regular fa-circle-check"></i></p>}
+                {funnel.length > 0 && funnel.length < 4 && <p className="text-slate-400 mt-4 animate-pulse">Waiting for next section...</p>}
+              </div>
+              <button onClick={resetFunnel} className="mt-8 text-sm text-slate-500 hover:text-slate-800 underline">Reset Funnel</button>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 7: DEMOGRAPHICS ---
+    const Section7 = () => {
+      const [cardIndex, setCardIndex] = useState(0);
+      const [feedback, setFeedback] = useState(null);
+      const [singStatAns, setSingStatAns] = useState('');
+      
+      const cards = [
+        { q: "What is your CCA?", useful: true, reason: "Purposeful! Great for comparing sub-populations (e.g., Sports vs Arts CCA stress levels)." },
+        { q: "What is your exact household income in $?", useful: false, reason: "Pointless & Invasive! Ask broad income brackets only if highly relevant." },
+        { q: "Are you currently studying in a JC?", useful: true, reason: "Purposeful! This is a Screening question. If they say no, kick them out." },
+        { q: "What is your NRIC?", useful: false, reason: "ILLEGAL! PDPA violation. Never ask for NRIC for a school project." }
+      ];
+
+      const handleSwipe = (isUseful) => {
+        const current = cards[cardIndex];
+        setFeedback({ type: isUseful === current.useful ? 'correct' : 'wrong', text: current.reason });
+        setTimeout(() => {
+          setFeedback(null);
+          if (cardIndex < cards.length - 1) setCardIndex(prev => prev + 1);
+        }, 2500);
+      };
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 7: The "Who Are You?"</h2><p className="text-slate-600 text-lg">Demographics and Data Privacy (PDPA)</p></div>
+          <div className="grid md:grid-cols-3 gap-4 mb-8">
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-200"><strong className="block text-blue-900 mb-1">1. To Screen</strong><span className="text-sm text-slate-700">Kick out people who aren't in your target population.</span></div>
+            <div className="bg-purple-50 p-4 rounded-lg border border-purple-200"><strong className="block text-purple-900 mb-1">2. Balance Tests</strong><span className="text-sm text-slate-700">Check if your sample matches real-world demographics.</span></div>
+            <div className="bg-orange-50 p-4 rounded-lg border border-orange-200"><strong className="block text-orange-900 mb-1">3. Sub-Populations</strong><span className="text-sm text-slate-700">See if different groups answer differently.</span></div>
+          </div>
+          <div className="bg-slate-800 p-8 rounded-xl shadow-xl flex flex-col items-center text-center relative overflow-hidden">
+            <h3 className="font-bold text-white text-xl mb-2">Swipe Game: Pointless or Purposeful?</h3>
+            <p className="text-slate-300 mb-6 text-sm">Project Topic: Attitudes toward JC canteen food.</p>
+            {cardIndex < cards.length ? (
+              <div className="w-full max-w-sm bg-white p-8 rounded-2xl shadow-2xl relative">
+                {feedback && <div className={`absolute inset-0 z-10 flex items-center justify-center p-6 rounded-2xl text-white font-bold text-lg text-center animate-fadeIn ${feedback.type === 'correct' ? 'bg-green-500/95' : 'bg-red-500/95'}`}>{feedback.text}</div>}
+                <p className="text-2xl font-bold text-slate-800 mb-8 min-h-[80px] flex items-center justify-center">"{cards[cardIndex].q}"</p>
+                <div className="flex gap-4">
+                  <button onClick={() => handleSwipe(false)} className="flex-1 bg-red-100 hover:bg-red-200 text-red-700 py-3 rounded-xl font-bold transition-colors">Pointless</button>
+                  <button onClick={() => handleSwipe(true)} className="flex-1 bg-green-100 hover:bg-green-200 text-green-700 py-3 rounded-xl font-bold transition-colors">Purposeful</button>
+                </div>
+              </div>
+            ) : (
+               <div className="w-full max-w-sm bg-slate-700 p-8 rounded-2xl text-white">
+                 <i className="fa-regular fa-circle-check text-6xl text-green-400 mb-4"></i>
+                 <p className="font-bold text-xl">All done!</p>
+                 <button onClick={() => setCardIndex(0)} className="mt-4 text-sm text-blue-300 hover:underline">Play Again</button>
+               </div>
+            )}
+          </div>
+          <div className="border-2 border-red-200 bg-red-50 p-6 rounded-xl relative">
+            <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">MINI CHALLENGE</div>
+            <h3 className="font-bold text-red-900 text-lg mb-2">The SingStat WebQuest</h3>
+            <p className="text-red-800 mb-4">Your survey sample returned <strong>80% Females and 20% Males</strong>. Is this balanced? Go to <a href="https://www.singstat.gov.sg" target="_blank" className="underline font-bold text-red-600">singstat.gov.sg</a> (or guess!) to find the true gender split of Singapore's youth population.</p>
+            <div className="flex items-center gap-3">
+              <input type="number" placeholder="True Male %" value={singStatAns} onChange={(e) => setSingStatAns(e.target.value)} className="border p-2 rounded w-32 focus:ring-2 focus:ring-red-400 outline-none" />
+            </div>
+            {singStatAns && <p className="mt-3 text-sm font-medium text-red-700">*Hint: In reality, it is roughly 51% Male / 49% Female. Your sample of 80% Female is heavily biased and fails the balance test!</p>}
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 8: INTERROGATION ROOM ---
+    const Section8 = () => {
+      const [fixed, setFixed] = useState({ q1: false, q2: false });
+      const [optionErrorClicked, setOptionErrorClicked] = useState(false);
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 8: The Interrogation Room</h2><p className="text-slate-600 text-lg">Crafting the Main Questions</p></div>
+          <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-yellow-900"><strong>Rule of Thumb:</strong> Use closed-ended questions (Multiple Choice/Likert Scales) for 90% of your survey. Open-ended paragraphs are a nightmare to code and analyze manually.</div>
+          <div className="bg-slate-900 text-slate-300 p-6 rounded-xl shadow-lg">
+            <h3 className="font-bold text-xl text-white mb-6">"Fix That Question!" Mini-Game</h3>
+            <div className="mb-6 bg-slate-800 p-4 rounded-lg border border-slate-700">
+              <div className="flex justify-between items-start mb-2"><span className="text-red-400 font-bold uppercase text-xs tracking-wider">Double-Barreled</span>{fixed.q1 && <i className="fa-regular fa-circle-check text-green-400 text-xl"></i>}</div>
+              <p className="text-white text-lg font-medium mb-4">"Do you think the MRT is fast and affordable?"</p>
+              {!fixed.q1 ? (
+                 <div className="space-y-2">
+                   <button onClick={() => setFixed({...fixed, q1: true})} className="w-full text-left p-2 rounded bg-slate-700 hover:bg-blue-600 hover:text-white transition-colors">Split into: 1. Is it fast? 2. Is it affordable?</button>
+                 </div>
+              ) : <p className="text-green-400 font-medium bg-green-400/10 p-2 rounded">Fixed! Never ask two things in one question.</p>}
+            </div>
+            <div className="mb-6 bg-slate-800 p-4 rounded-lg border border-slate-700">
+              <div className="flex justify-between items-start mb-2"><span className="text-red-400 font-bold uppercase text-xs tracking-wider">Leading</span>{fixed.q2 && <i className="fa-regular fa-circle-check text-green-400 text-xl"></i>}</div>
+              <p className="text-white text-lg font-medium mb-4">"Don't you agree that the recent tuition fee hike is unfair?"</p>
+              {!fixed.q2 ? (
+                 <div className="space-y-2">
+                   <button onClick={() => setFixed({...fixed, q2: true})} className="w-full text-left p-2 rounded bg-slate-700 hover:bg-blue-600 hover:text-white transition-colors">"How do you feel about the recent tuition fee hike?"</button>
+                 </div>
+              ) : <p className="text-green-400 font-medium bg-green-400/10 p-2 rounded">Fixed! Keep the phrasing completely neutral.</p>}
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="border-2 border-slate-200 p-6 rounded-xl bg-white">
+              <h3 className="font-bold text-lg mb-4">Response Validator</h3>
+              <p className="text-sm text-slate-600 mb-4">Click on the critical error in these options:</p>
+              <div className="p-4 bg-slate-50 rounded border mb-4">
+                <p className="font-medium mb-2">How old are you?</p>
+                <ul className="space-y-2">
+                  <li className="p-2 border rounded bg-white">A) 15-16</li>
+                  <li onClick={() => setOptionErrorClicked(true)} className={`p-2 border rounded cursor-pointer transition-all ${optionErrorClicked ? 'bg-red-100 border-red-500' : 'bg-white hover:bg-red-50'}`}>B) 16-17 {optionErrorClicked && <span className="text-red-600 font-bold ml-2">&larr; ERROR!</span>}</li>
+                  <li className="p-2 border rounded bg-white">C) 18-19</li>
+                </ul>
+              </div>
+              {optionErrorClicked && <div className="text-sm text-red-700 bg-red-50 p-3 rounded"><strong>Not Mutually Exclusive!</strong> Options must never overlap.</div>}
+            </div>
+            <div className="bg-indigo-50 border-2 border-indigo-200 p-6 rounded-xl flex flex-col justify-center">
+              <h3 className="font-bold text-indigo-900 text-lg mb-2">Why we love the 4-Point Likert Scale</h3>
+              <p className="text-indigo-800 text-sm mb-4">Strongly Disagree / Disagree / Agree / Strongly Agree</p>
+              <p className="text-slate-700">A 5-point scale gives respondents a "Middle/Neutral" trap. <strong>Force them to make a choice!</strong></p>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 9: GOOGLE FORMS ---
+    const Section9 = () => {
+      const [logicNo, setLogicNo] = useState('');
+      const [logicYes, setLogicYes] = useState('');
+      const isCorrect = logicNo === 'submit' && logicYes === 'section2';
+
+      return (
+        <div className="space-y-8 animate-fadeIn">
+          <div><h2 className="text-3xl font-bold text-slate-800 mb-2">Section 9: Bringing It To Life</h2><p className="text-slate-600 text-lg">Google Forms & Pilot Testing</p></div>
+          <div className="bg-white border shadow-lg rounded-xl overflow-hidden font-sans">
+            <div className="bg-[#673ab7] text-white p-4 flex items-center gap-2"><i className="fa-solid fa-gear"></i> <strong>Google Forms Logic Simulator</strong></div>
+            <div className="p-6 bg-purple-50/30">
+              <p className="text-sm text-slate-600 mb-6">Build a <strong>Screening Question</strong> to ensure only JC/Poly students take your survey.</p>
+              <div className="bg-white border-l-4 border-blue-500 p-6 shadow-sm rounded">
+                <input type="text" value="Are you currently studying in a JC or Poly?" readOnly className="w-full text-lg border-b-2 border-slate-200 pb-2 mb-6 outline-none" />
+                <div className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-4 h-4 rounded-full border-2 border-slate-300"></div><span className="w-16">No</span>
+                    <select value={logicNo} onChange={(e) => setLogicNo(e.target.value)} className="flex-1 p-2 border rounded text-sm bg-slate-50 outline-none focus:ring-2 focus:ring-[#673ab7]">
+                      <option value="">Go to section...</option><option value="section2">Continue to Section 2</option><option value="submit">Submit Form (End of Survey)</option>
+                    </select>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="w-4 h-4 rounded-full border-2 border-slate-300"></div><span className="w-16">Yes</span>
+                    <select value={logicYes} onChange={(e) => setLogicYes(e.target.value)} className="flex-1 p-2 border rounded text-sm bg-slate-50 outline-none focus:ring-2 focus:ring-[#673ab7]">
+                      <option value="">Go to section...</option><option value="section2">Continue to Section 2</option><option value="submit">Submit Form (End of Survey)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              {isCorrect && <div className="mt-6 p-4 bg-green-100 text-green-800 rounded flex gap-2 items-center animate-fadeIn border border-green-200"><i className="fa-regular fa-circle-check"></i> Perfect! You successfully screened out irrelevant participants.</div>}
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div className="bg-slate-50 border p-6 rounded-xl">
+              <h3 className="font-bold text-lg mb-2 flex items-center gap-2"><i className="fa-regular fa-square-check text-blue-600"></i> Data Validation</h3>
+              <p className="text-slate-700 text-sm">For questions like "How many hours do you sleep?", always use Forms' <strong>Response Validation &rarr; Number Only</strong>. Otherwise, respondents will type "seven," creating painful data cleaning later!</p>
+            </div>
+            <div className="bg-red-50 border border-red-200 p-6 rounded-xl">
+              <h3 className="font-bold text-red-900 text-lg mb-2 flex items-center gap-2"><i className="fa-solid fa-bullseye text-red-600"></i> The Final Boss: Pilot Test</h3>
+              <p className="text-slate-700 text-sm mb-4">Before you blast your link to 200 people... what is the absolute last step?</p>
+              <div className="bg-white p-3 rounded border-l-4 border-red-500 font-medium text-red-800 shadow-sm text-sm">Send it to 3 friends first! Have them try to "break" the survey, look for typos, and test your branching logic.</div>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // --- SECTION 10: CHEATSHEET ---
+    const Section10 = () => (
+      <div className="space-y-8 animate-fadeIn">
+        <div className="text-center">
+          <h2 className="text-4xl font-black text-slate-800 mb-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Module Complete!</h2>
+          <p className="text-slate-600 text-lg">Here is your final cheatsheet. Screenshot this for your PW journey.</p>
+        </div>
+        <div className="bg-white shadow-2xl rounded-2xl overflow-hidden border-2 border-slate-800 mx-auto max-w-3xl">
+          <div className="bg-slate-800 text-white p-6 text-center"><h3 className="text-2xl font-bold uppercase tracking-widest">Survey Design Cheatsheet</h3></div>
+          <div className="p-0 overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead><tr className="bg-slate-100"><th className="p-4 border-b-2 border-slate-200 font-bold text-slate-800 w-1/2">The Survey Sin</th><th className="p-4 border-b-2 border-slate-200 font-bold text-slate-800 w-1/2">The Fix</th></tr></thead>
+              <tbody className="divide-y divide-slate-100 text-slate-700">
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Overlapping Options</span>(e.g., 10-20, 20-30)</td><td className="p-4 font-medium text-green-700">Make them Mutually Exclusive (10-19, 20-29).</td></tr>
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Double-Barreled</span>("Is it cheap and good?")</td><td className="p-4 font-medium text-green-700">Split into two separate questions.</td></tr>
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Leading Questions</span>("Why is this policy bad?")</td><td className="p-4 font-medium text-green-700">Keep it neutral.</td></tr>
+                <tr className="hover:bg-slate-50"><td className="p-4"><span className="font-bold text-red-600 block mb-1">Vague Phrasing</span>("Do you go often?")</td><td className="p-4 font-medium text-green-700">Use concrete terms ("Do you go 3+ times a week?").</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+
+    // Tell React to render our app into the "root" div!
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<SgSampleModule />);
+  </script>
+</body>
 </html>
